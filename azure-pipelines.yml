@@ -40,14 +40,30 @@ steps:
     summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/*coverage.xml'
     reportDirectory: '$(System.DefaultWorkingDirectory)/**/coverage'
 
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: $(System.DefaultWorkingDirectory)/bin/WebApp
+    artifactName: app
+
+- task: DownloadBuildArtifacts@0
+  inputs:
+    buildType: 'current'
+    downloadType: 'single'
+    artifactName: 'app'
+    downloadPath: '$(System.ArtifactsDirectory)'
+    
+  
+
 - task: KubernetesManifest@0
   inputs:
     action: 'deploy'
     kubernetesServiceConnection: 'Kubernetes-ravi'
     namespace: 'default'
-    manifests: '/home/vsts/work/1/s/manifest/deployment.yml'
+    manifests: '$(System.ArtifactsDirectory)/manifest/deployment.yml'
     
-    
+
+
 # - task: KubernetesManifest@0
 #   inputs:
 #     action: 'deploy'
