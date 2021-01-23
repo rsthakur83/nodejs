@@ -1,4 +1,5 @@
 # Build Docker image for this app using Azure Pipelines
+
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker?view=vsts
 pool:
   vmImage: 'Ubuntu 16.04'
@@ -37,6 +38,14 @@ steps:
     summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/*coverage.xml'
     reportDirectory: '$(System.DefaultWorkingDirectory)/**/coverage'
 
+
+- task: KubernetesManifest@0
+  inputs:
+    action: 'deploy'
+    kubernetesServiceConnection: 'Kubernetes-ravi'
+    namespace: 'default'
+    manifests: 'maniest/deployment.yaml'
+    
 
 - task: Kubernetes@1
   inputs:
