@@ -22,7 +22,7 @@ steps:
     script: |
       echo Write your commands here
       ls
-      
+      ls manifest/deployment.yaml
       echo Hello world
       
 - task: PublishTestResults@2
