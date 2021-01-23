@@ -25,7 +25,7 @@ steps:
       echo '$(System.DefaultWorkingDirectory)'
       echo '$(Pipeline.Workspace)'
       ls manifest/deployment.yaml
-      echo %CD%
+      echo %cd%
       echo Hello world
       
 - task: PublishTestResults@2
