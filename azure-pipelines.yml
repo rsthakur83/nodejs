@@ -17,6 +17,14 @@ steps:
   env:
     pswd: $(dockerPassword)
 
+- task: CmdLine@2
+  inputs:
+    script: |
+      echo Write your commands here
+      ls
+      
+      echo Hello world
+      
 - task: PublishTestResults@2
   condition: succeededOrFailed()
   inputs:
@@ -28,6 +36,7 @@ steps:
     codeCoverageTool: Cobertura
     summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/*coverage.xml'
     reportDirectory: '$(System.DefaultWorkingDirectory)/**/coverage'
+
 
 - task: Kubernetes@1
   inputs:
