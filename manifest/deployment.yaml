@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: docker-hello-world
+  labels:
+    app: docker-hello-world
+spec:
+  selector:
+    matchLabels:
+      app: docker-hello-world
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: docker-hello-world
+    spec:
+      containers:
+      - name: docker-hello-world
+        image: scottsbaldwin/docker-hello-world:latest
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: docker-hello-world-svc
+spec:
+  selector:
+    app: docker-hello-world
+  ports:
+    - port: 8015
+      targetPort: 80
+  type: LoadBalancer
+  loadBalancerIP: 10.200.0.16
+---
+#apiVersion: networking.k8s.io/v1beta1
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: hello-nginx-ingress
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+    traefik.frontend.rule.type: PathPrefixStrip
+    kubernetes.io/ingress.allow-http: "false"
+    #traefik.ingress.kubernetes.io/redirect-entry-point: "https"
+    #    kubernetes.io/ingress.rewrite-to-https: "true"
+    #ingress.kubernetes.io/ssl-redirect: "true"
+    #    traefik.ingress.kubernetes.io/frontend-entry-points: http, https
+    #    traefik.ingress.kubernetes.io/redirect-entry-point: https
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /hello
+        backend:
+          serviceName: docker-hello-world-svc
+          servicePort: 8015
