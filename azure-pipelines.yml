@@ -22,7 +22,8 @@ steps:
   inputs:
     script: |
       echo Write your commands here
-      ls
+      echo '$(System.DefaultWorkingDirectory)'
+      echo '$(Pipeline.Workspace)'
       ls manifest/deployment.yaml
       echo Hello world
       
