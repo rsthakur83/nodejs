@@ -45,22 +45,5 @@ steps:
     namespace: 'default'
     manifests: '$(Pipeline.Workspace)/manifest/deployment.yml'
 
-- task: KubernetesManifest@0
-  inputs:
-    action: 'deploy'
-    kubernetesServiceConnection: 'Kubernetes-ravi'
-    namespace: 'default'
-    manifests: 'maniest/deployment.yaml'
     
-
-- task: Kubernetes@1
-  inputs:
-    connectionType: 'Kubernetes Service Connection'
-    kubernetesServiceEndpoint: 'Kubernetes-ravi'
-    namespace: 'default'
-    command: 'apply'
-    useConfigurationFile: true
-    configuration: 'maniest/deployment.yaml'
-    secretType: 'dockerRegistry'
-    containerRegistryType: 'Azure Container Registry'
     
