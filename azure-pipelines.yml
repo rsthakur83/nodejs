@@ -45,7 +45,15 @@ steps:
     action: 'deploy'
     kubernetesServiceConnection: 'Kubernetes-ravi'
     namespace: 'default'
-    manifests: '$(Pipeline.Workspace)/manifest/deployment.yml'
+    manifests: '/home/vsts/work/1/s/manifest/deployment.yml'
+    
+    
+# - task: KubernetesManifest@0
+#   inputs:
+#     action: 'deploy'
+#     kubernetesServiceConnection: 'Kubernetes-ravi'
+#     namespace: 'default'
+#     manifests: '$(Pipeline.Workspace)/manifest/deployment.yml'
 
     
     
