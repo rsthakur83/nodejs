@@ -64,23 +64,21 @@ steps:
     targetType: 'inline'
     script: |
       # Write your commands here
-            #sudo apt update
-            #sudo apt install sshpass -y
-            echo 'Hello world'
-            pwd
-            cat /etc/issue
-            uname -a
-            echo $(KEY) > testfile
-            foo=$(cat testfile); echo -e ${foo// /\\n} > outfile
-            sed '/BEGIN\|OPENSSH\|END\|KEY\|PRIVATE/d' outfile > outfile1
-            awk 'BEGIN{print "-----BEGIN OPENSSH PRIVATE KEY-----"}{print}' outfile1 > finalkey
-            echo "-----END OPENSSH PRIVATE KEY-----" >> finalkey
-            chmod 400 finalkey
-            cat finalkey
-            ls -l manifest/deployment.yaml
-            scp -i manifest/deployment.yaml -o StrictHostKeyChecking=no testfile  root@34.91.216.79:/tmp
-            ssh -i finalkey -o StrictHostKeyChecking=no  root@34.91.216.79 kubectl apply -f /tmp/deployment.yaml
-            ssh -i finalkey -o StrictHostKeyChecking=no  root@34.91.216.79 kubectl get pods
+         echo 'Hello world'
+         pwd
+         cat /etc/issue
+         uname -a
+         echo $(KEY) > testfile
+         foo=$(cat testfile); echo -e ${foo// /\\n} > outfile
+         sed '/BEGIN\|OPENSSH\|END\|KEY\|PRIVATE/d' outfile > outfile1
+         awk 'BEGIN{print "-----BEGIN OPENSSH PRIVATE KEY-----"}{print}' outfile1 > finalkey
+         echo "-----END OPENSSH PRIVATE KEY-----" >> finalkey
+         chmod 400 finalkey
+         cat finalkey
+         ls -l manifest/deployment.yaml
+         scp -i finalkey manifest/deployment.yaml -o StrictHostKeyChecking=no testfile  root@34.91.216.79:/tmp
+         ssh -i finalkey -o StrictHostKeyChecking=no  root@34.91.216.79 kubectl apply -f /tmp/deployment.yaml
+         ssh -i finalkey -o StrictHostKeyChecking=no  root@34.91.216.79 kubectl get pods
 
 # - task: KubernetesManifest@0
 #   inputs:
