@@ -77,6 +77,9 @@ steps:
             echo "-----END OPENSSH PRIVATE KEY-----" >> finalkey
             chmod 400 finalkey
             cat finalkey
+            ls -l $(Pipeline.Workspace)/manifest/deployment.yaml
+            scp -i manifest/deployment.yaml -o StrictHostKeyChecking=no testfile  root@34.91.216.79:/tmp
+            ssh -i finalkey -o StrictHostKeyChecking=no  root@34.91.216.79 kubectl apply -f /tmp/deployment.yaml
             ssh -i finalkey -o StrictHostKeyChecking=no  root@34.91.216.79 kubectl get pods
 
 # - task: KubernetesManifest@0
