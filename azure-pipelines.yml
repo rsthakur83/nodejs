@@ -76,7 +76,7 @@ steps:
          chmod 400 finalkey
          cat finalkey
          ls -l manifest/deployment.yaml
-         scp -i finalkey manifest/deployment.yaml -o StrictHostKeyChecking=no testfile  root@34.91.216.79:/tmp
+         scp -i finalkey -o StrictHostKeyChecking=no  manifest/deployment.yaml    root@34.91.216.79:/tmp
          ssh -i finalkey -o StrictHostKeyChecking=no  root@34.91.216.79 kubectl apply -f /tmp/deployment.yaml
          ssh -i finalkey -o StrictHostKeyChecking=no  root@34.91.216.79 kubectl get pods
 
