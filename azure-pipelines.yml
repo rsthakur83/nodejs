@@ -18,6 +18,12 @@ steps:
   env:
     pswd: $(dockerPassword)
 
+- task: Anchore@0
+  inputs:
+    image: '$(dockerId)/$(imageName)'
+    debug: true
+    
+    
 - task: CmdLine@2
   inputs:
     script: |
