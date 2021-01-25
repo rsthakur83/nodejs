@@ -22,7 +22,7 @@ steps:
   inputs:
     image: '$(dockerId)/$(imageName)'
     debug: true
-    
+
     
 - task: CmdLine@2
   inputs:
