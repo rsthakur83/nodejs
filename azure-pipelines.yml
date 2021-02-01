@@ -11,6 +11,7 @@ variables:
 steps:
 - script: |
     npm install
+    - task: SonarQubeAnalyze@4
     npm test
     docker build -f Dockerfile -t $(dockerId)/$(imageName) .
     docker login -u $(dockerId) -p $pswd
