@@ -51,7 +51,10 @@ spec:
   rules:
   - http:
       paths:
-      - path: /hello
-        backend:
-          serviceName: docker-hello-world-svc
-          servicePort: 8015
+      - backend:
+          service:
+            name: docker-hello-world-svc
+            port:
+              number: 8015
+        path: /hello
+        pathType: Exact
