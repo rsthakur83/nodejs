@@ -18,17 +18,17 @@ steps:
   env:
     pswd: $(dockerPassword)
 
-- task: SonarQubePrepare@4
-  inputs:
-    SonarQube: 'sonarqube'
-    scannerMode: 'CLI'
-    configMode: 'manual'
-    cliProjectKey: 'nodejs'
-    cliProjectName: 'nodejs'
-    cliSources: '.'
+# - task: SonarQubePrepare@4
+#   inputs:
+#     SonarQube: 'sonarqube'
+#     scannerMode: 'CLI'
+#     configMode: 'manual'
+#     cliProjectKey: 'nodejs'
+#     cliProjectName: 'nodejs'
+#     cliSources: '.'
 
-# Run Code Analysis task
-- task: SonarQubeAnalyze@4
+# # Run Code Analysis task
+# - task: SonarQubeAnalyze@4
 
 # - task: AnchoreTask@1
 #   inputs:
