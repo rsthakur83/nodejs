@@ -19,11 +19,17 @@ steps:
     pswd: $(dockerPassword)
 
 
-    
-- task: Anchore@0
+- task: AnchoreTask@1
   inputs:
-    image: '$(dockerId)/$(imageName)'
-    debug: true
+    engineUrl: 'http://34.91.216.79:9004'
+    engineUser: 'admin'
+    enginePassword: 'foobar'
+    imageName: '$(dockerId)/$(imageName)'
+
+# - task: Anchore@0
+#   inputs:
+#     image: '$(dockerId)/$(imageName)'
+#     debug: true
 
 
     
