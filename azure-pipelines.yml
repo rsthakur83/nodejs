@@ -23,7 +23,7 @@ steps:
     SonarQube: 'sonarqube'
     scannerMode: 'CLI'
     configMode: 'manual'
-    cliProjectKey: '948283f9d8e0f758698c68389e3de451069724dd'
+    cliProjectKey: 'nodejs'
     cliProjectName: 'nodejs'
     cliSources: '.'
     
