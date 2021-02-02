@@ -18,8 +18,12 @@ steps:
   env:
     pswd: $(dockerPassword)
 
-- task: SonarQubeAnalyze@4
-
+- task: SonarQubePrepare@4
+  inputs:
+    SonarQube: 'sonarqube'
+    scannerMode: 'CLI'
+    configMode: 'file'
+    
 - task: Anchore@0
   inputs:
     image: '$(dockerId)/$(imageName)'
