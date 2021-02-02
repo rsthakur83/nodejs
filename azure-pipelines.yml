@@ -22,7 +22,10 @@ steps:
   inputs:
     SonarQube: 'sonarqube'
     scannerMode: 'CLI'
-    configMode: 'file'
+    configMode: 'manual'
+    cliProjectKey: 'nodejs'
+    cliProjectName: 'nodejs'
+    cliSources: '.'
     
 - task: Anchore@0
   inputs:
